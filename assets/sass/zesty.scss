@@ -1,0 +1,439 @@
+@import '../bower/bootstrap/scss/bootstrap.scss';
+
+$proxima: "proxima-nova",sans-serif;
+
+// Media beakpoints
+$sm: 34rem;
+$md: 48rem;
+$lg: 62rem;
+$xl: 75rem;
+
+// Uses flexbox to center vertical and horizontal
+@mixin flexbox-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin whitelink {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+// TODO: Check if class is needed
+.hide {
+  display: none;
+}
+
+html {
+  background-color: #000000;
+}
+
+// Element specific styles
+// Langing page (index.hbs)
+#landing-page {
+  max-height: 100%;
+  #landing-categories {
+    ul {
+      // Remove default margin
+      margin-bottom: 0px;
+    }
+    .landing-category {
+      color: #FFF;
+      display: block;
+      border: .01rem solid #000000;
+      // Remove container's default padding
+      padding: 0 0 0 0;
+      // Filter goes away on hover
+      filter: grayscale(1);
+      // Keep it all centered throughout widths
+      @include flexbox-center;
+      // Height minimums
+      @media (min-width: $sm) {
+        min-height: 43rem;
+      }
+      @media (max-width: $sm - 0.1rem) {
+        min-height: 10rem;
+      }
+    }
+    .landing-category:nth-child(1) {
+      @media (max-width: $sm - .01rem) {
+        background: url(/images/music.jpg) no-repeat center center;
+        background-size: cover;
+      }
+      @media (min-width: $sm) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(115,115,115,0) 5%, rgba(0,0,0,1) 90%), url(/images/music.jpg) no-repeat center center;
+        background-size: cover;
+      }
+    }
+    .landing-category:nth-child(2) {
+      @media (max-width: $sm - .01rem) {
+        background: url(/images/doc.jpg) no-repeat center right 10%;
+        background-size: cover;
+      }
+      @media (min-width: $sm) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(115,115,115,0) 5%, rgba(0,0,0,1) 90%), url(/images/doc.jpg) no-repeat center right 10%;
+        background-size: cover;
+      }
+    }
+    .landing-category:nth-child(3) {
+      @media (max-width: $sm - .01rem) {
+        background: url(/images/scripted.jpg) no-repeat center 10%;
+        background-size: cover;
+      }
+      @media (min-width: $sm) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(115,115,115,0) 5%, rgba(0,0,0,1) 90%), url(/images/scripted.jpg) no-repeat center center;
+        background-size: cover;
+      }
+    }
+    .landing-category:nth-child(4) {
+      @media (max-width: $sm - .01rem) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(115,115,115,0) 5%, rgba(0,0,0,1) 90%), url(/images/commercial.jpg) no-repeat 50% 40%;
+        background-size: cover;
+        // background-position: ;
+      }
+      @media (min-width: $sm) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(115,115,115,0) 5%, rgba(0,0,0,1) 90%), url(/images/commercial.jpg) no-repeat center left 30%;
+        background-size: cover;
+      }
+    }
+    .landing-category:hover {
+      filter: grayscale(0);
+      transition: filter 0.2s;
+    }
+    a {
+      @include whitelink;
+      // Make anchor fill entire box
+      height: calc(100% - 137px);
+      width: 100%;
+      // Vertically Center Text
+      @include flexbox-center;
+      // Vertical text
+      @media (max-width: $md) {
+        transform: initial;
+      }
+      @media (min-width: $md) {
+        transform: rotate(-90deg);
+        transform-origin: center center;
+      }
+    }
+    h1 {
+      font-family: $proxima;
+      font-weight: 700;
+      @media (min-width: $sm) {
+        font-size: 5rem;
+      }
+    }
+  }
+}
+
+#about-page {
+  @media (min-width: $md) {
+    min-width: 1000px;
+  }
+  margin-bottom: 0px;
+  background-color: #000000;
+  overflow-x: hidden;
+  .about-profile {
+    color: #FFFFFF;
+    overflow: hidden;
+    @media (min-width: $md) {
+      display: flex;
+      width: 24.98%;
+      height: calc(100vh - 137px);
+      float: left;
+    }
+    @mixin about-background($imgURL) {
+      background-repeat: no-repeat;
+      @media (max-width: $md) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0px, rgba(115,115,115,0) 14rem, rgba(0,0,0,1) 18rem), url($imgURL);
+      }
+      @media (min-width: $md) {
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0px, rgba(115,115,115,0) 35vh, rgba(0,0,0,1) 70vh), url($imgURL);
+        // background-size: 76.9vw auto;
+      }
+      @media (max-width: $md) {
+        background-size: 100% auto;
+      }
+      // @media (max-height: 800px) and (max-width: $md) {
+      //   background-size: 160% auto;
+      //   background-position: left 0 top -4em;
+      // }
+      // @media (max-height: 800px) and (min-width: $md) {
+      //   background-size: auto 160%;
+      //   background-position: left -10rem top 10%;
+      // }
+      @media (min-width: $md) {
+        background-size: auto 100vh;
+        background-position: 0% 0%, 25% 25%;
+      }
+      @media (min-width: 1410px) {
+        background-size: 80vw auto;
+        background-position: 0% 0%, 20% 20%;
+      }
+      // @media (min-height: 800px) and (min-width: $md) {
+      //   background-size: auto 160%;
+      //   background-position: left -24rem top 10%;
+      // }
+    }
+    &:nth-child(1) {
+      @include about-background('/images/IMG_2334.JPG');
+    }
+    &:nth-child(2) {
+      @include about-background('/images/IMG_2333.JPG');
+    }
+    &:nth-child(3) {
+      @include about-background('/images/IMG_2335.JPG')
+    }
+    &:nth-child(4) {
+      @include about-background('/images/IMG_2337.JPG');
+    }
+    .about-frontmatter {
+      @media (max-width: $md) {
+        margin-top: 0.7rem;
+        margin-left: 1rem;
+      }
+      @media (min-width: $md) {
+        align-self: flex-end;
+      }
+      // margin-right: 10rem;
+      h3 {
+        width: 15rem;
+        font-family: $proxima;
+        font-weight: 700;
+      }
+      h6 {
+        width: 15rem;
+      }
+      h3,h6 {
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.75);
+      }
+    }
+    .about-deeper {
+      @media (max-width: $md) {
+        margin-top: 5rem;
+        padding-left: 1em;
+        padding-right: 1em;
+      }
+      @media (min-width: $md) {
+        display: flex;
+        min-width: 420px;
+        float: right;
+        position: relative;
+        left: calc(12vw + 12rem);
+        padding-right: 2rem;
+      }
+      p {
+        align-self: flex-end;
+        font-size: 1rem;
+        text-align: justify;
+        padding-top: 1rem;
+        @media (min-width: $md) {
+          min-width: 250px;
+          width: calc(76.9vw - 12vw - 320px);
+        }
+      }
+    }
+  }
+
+  .expanded {
+    .about-deeper {
+      left: calc(12vw);
+    }
+  }
+  @media (max-width: $md) {
+    .normal {
+      height: 10rem;
+      transition: height 350ms ease;
+    }
+    .contracted {
+      height: 10rem;
+      transition: height 350ms ease;
+    }
+    .expanded {
+      height: auto;
+      transition: height 350ms ease;
+    }
+  }
+  @media (min-width: $md) {
+    .expanded {
+      width: 76.9%;
+      transition: width 350ms ease;
+    }
+    .contracted {
+      width: 7.7%;
+      transition: width 350ms ease;
+    }
+    .normal {
+      width: 24.98%;
+      transition: width 350ms ease;
+    }
+    .about-profile.contracted {
+      .about-frontmatter {
+        margin-left: 0;
+        h3 {
+          margin: 0;
+          margin-bottom: 1rem;
+          font-size: 3rem;
+          writing-mode: vertical-rl;
+          transform: rotate(180deg);
+          transform-origin: center center;
+        }
+        h6 {
+          display: none;
+        }
+      }
+    }
+    .about-profile.normal, .about-profile.expanded {
+      .about-frontmatter {
+        margin-left: 1rem;
+        h3 {
+          font-size: 1.75rem;
+          writing-mode: initial;
+          transform: initial;
+        }
+        h6 {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+#video-page {
+  background: #000000;
+  #masthead {
+    padding-top: .4rem;
+    width: 80%;
+    margin: 0px auto;
+  }
+  .bx-wrapper {
+    background-color: #000000;
+    border: #000000;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+  .scroll-container {
+    background: rgba(255, 214, 0, 0.9);
+    cursor: pointer;
+    cursor: hand;
+    display: inline-block;
+    height: 3rem;
+    // Positions halfway in video list
+    margin-top: 42px;
+    z-index: 1;
+    @include flexbox-center;
+    i {
+      cursor: pointer;
+      cursor: hand;
+      color: #FFFFFF;
+      transform: translateY(1px);
+    }
+  }
+  #left-arrow {
+    padding: .1rem .5rem 0 .3rem;
+    position: absolute;
+    left: 0;
+  }
+  #right-arrow {
+    padding: 0 .3rem .1rem .5rem;
+    position: absolute;
+    right: 0;
+    i {
+      transform: rotate(180deg);
+    }
+  }
+  .video {
+    border: 0.3rem solid rgba(255, 214, 0, 0);
+  }
+  .selected {
+    border: 0.3rem solid rgb(255, 214, 0);
+  }
+  .bx-viewport {
+    background-color: rgb(0, 0, 0);
+    border-color: rgb(0, 0, 0);
+    box-shadow: none;
+    // Override height to show entire thumbnails
+    height: 170px !important;
+    // Account for -5px offset
+    transform: translateX(5px);
+    iframe {
+      display: none;
+    }
+    .bx-loading {
+      background-color: rgb(0, 0, 0);
+    }
+  }
+}
+
+#contact-wrapper {
+  // Appearance
+  background: rgba(0, 0, 0, 0.64);
+  color: #FFFFFF;
+  display: none;
+  // Size
+  width: 100%;
+  height: 100%;
+  // Position
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  h1 {
+    font-family: $proxima;
+    font-weight: 700;
+    @media (min-width: 48rem) {
+      font-size: 5rem;
+    }
+    text-align: center;
+  }
+  .sidebar-clickaway {
+    display: inline-block;
+    height: 100vh;
+  }
+}
+
+footer {
+  background-color: #000;
+  color: #FFFFFF;
+  font-family: $proxima;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+  i {
+    @include whitelink;
+    margin-left: 0.3rem;
+  }
+  a .social {
+    @media (min-width: $sm) {
+      font-size: 1.9rem;
+    }
+    @media (max-width: $sm - 0.1rem) {
+      font-size: 1.5rem;
+    }
+  }
+  h5 {
+    @include whitelink;
+    font-size: 1.2rem;
+  }
+  h6 {
+    font-size: 0.8rem;
+    padding-top: 1rem;
+    padding-left: .8rem;
+  }
+  #logo {
+      margin-bottom: 1rem;
+      @media (max-width: $sm) {
+        margin-top: 1.4rem;
+        margin-bottom: .8rem;
+        width: 71px;
+        height: 71px;
+      }
+  }
+  // Text alignment responsively configured by Bootstrap
+  menuitem {
+    padding-left: 1rem;
+    h5 {
+      display: inline;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<footer class="row">
+  <div class="col-md-4 col-md-offset-1 col-xs-12 text-md-left text-xs-center">
+    <a href="https://www.facebook.com/zestyprods/"><i class="fa fa-facebook-f social"></i></a>
+    <a href="https://vimeo.com/zestyproductions"><i class="fa fa-vimeo social"></i></a>
+    <a href="https://www.linkedin.com/company/zesty-productions"><i class="fa fa-linkedin social"></i></a>
+    <h6 class="hidden-sm-down">© 2016 ZESTY PRODUCTIONS. ALL RIGHTS RESERVED.</h6>
+  </div>
+  <div class="col-md-2 col-xs-12 text-xs-center">
+    <a href="/">
+      <img src="/images/logo.png" alt="Zesty Productions Logo" height="81px" width="81px" id="logo"/>
+    </a>
+  </div>
+  <menu class="col-md-4 text-md-right col-xs-12 text-xs-center">
+    <menuitem>
+      <a class="contact-trigger" href="#contact" style="text-decoration: none;">
+        <h5>CONTACT</h5>
+      </a>
+    </menuitem>
+  </menu>
+  <h6 class="text-xs-center hidden-md-up m-t-1">© 2016 ZESTY PRODUCTIONS. ALL RIGHTS RESERVED.</h6>
+</footer>
+{{>contact}}
+
+<script type="text/javascript">
+  $(function () {
+    $('.sidebar-clickaway').click(function () {
+      $('#contact-wrapper').hide(100);
+    });
+    $('#contact-exit').click(function () {
+      $('#contact-wrapper').hide(100);
+    })
+  });
+</script>

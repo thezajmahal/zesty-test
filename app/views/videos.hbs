@@ -1,0 +1,81 @@
+<div class="container-fluid" id="video-page">
+  <div id="masthead"></div>
+  <!-- <ul id="videos" class="list-unstyled list-inline"> -->
+    <div class="scroll-container" id="left-arrow"></div>
+    <div class="scroll-container" id="right-arrow"></div>
+    <div class="bxslider">
+      {{#each videos}}
+        <div id="video-{{@index}}" class="video">
+          <img src="{{this.thumb}}" alt="{{this.title}} Thumbnail" />
+        </div>
+      {{/each}}
+    </div>
+  {{>scripts}}
+  {{>footer}}
+</div>
+
+<!-- Video carousel w/ bxSlider -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.bxslider').bxSlider({
+    nextSelector: '#right-arrow',
+    prevSelector: '#left-arrow',
+    nextText: '<i class="fa fa-chevron-left fa-2x"></i>',
+    prevText: '<i class="fa fa-chevron-left fa-2x"></i>',
+    pager: false,
+    slideWidth: 300,
+    adaptiveHeight: true,
+    minSlides: 2,
+    maxSlides: 5,
+    moveSlides: 1,
+    slideMargin: 5
+  });
+});
+</script>
+
+<!-- Enable player to react to video events -->
+<script src="https://cdn.rawgit.com/jrue/Vimeo-jQuery-API/master/dist/jquery.vimeo.api.min.js" charset="utf-8"></script>
+
+<!-- Displays masthead video embeds -->
+<script type="text/javascript">
+  $(document).ready(function () {
+    // Load iframes into array
+    var videos = [
+      {{#each videos}}
+        '{{{this.embed}}}',
+      {{/each}}
+    ]
+
+    // Sets embed of element in the masthead
+    var firstVideoPlayed = false;
+    function display(element) {
+      // Clears classes of all videos
+      $('.video').removeClass('selected');
+      $(element).addClass('selected');
+      $('#masthead').html(videos[$(element).attr('id').substr(6)]);
+      $('#masthead > iframe').attr('id', 'displayed-video')
+      .attr('no-in-sequence', $(element).attr('id').substr(6));
+      $("#masthead").fitVids();
+
+      // Display next video after current video finishes
+      $('#displayed-video').on('finish', function () {
+        console.log('video finished!');
+        var currentVideo = $('#displayed-video');
+        var nextVideo = $('#video-' + (parseInt(currentVideo.attr('no-in-sequence')) + 1));
+        if(nextVideo.length) display(nextVideo);
+        if(!firstVideoPlayed) firstVideoPlayed = true;
+        $('#displayed-video').on('load', function () {
+          $('#displayed-video').vimeo('play');
+        });
+      });
+    }
+
+    // Display first video on load
+    display($('.video').eq(0));
+
+    // When a video thumbnail is clicked on, send it to the masthead
+    $('.video').click(function () {
+      display(this);
+    });
+  });
+</script>

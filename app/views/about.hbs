@@ -1,0 +1,43 @@
+<div class="container-fluid" id="about-page">
+  <div class="row">
+    <!-- Models in /routes/index.js -->
+    {{#each people}}
+    <div class="about-profile normal">
+      <div class="about-frontmatter">
+        <h3 >{{this.name}}</h3>
+        <h6>{{this.location}}</h6>
+      </div>
+      <div class="about-deeper">
+        <p>
+          {{this.about}}
+        </p>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{> scripts }}
+  {{> footer }}
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.about-profile').click(function() {
+      if(!$(this).hasClass('expanded')) {
+        $(this).removeClass('normal');
+        $(this).removeClass('contracted');
+        $(this).addClass('expanded');
+        $('.about-profile').not(this).each(function() {
+          $(this).removeClass('expanded');
+          $(this).removeClass('normal');
+          $(this).addClass('contracted');
+        })
+      } else {
+        $('.about-profile').each(function() {
+          $(this).removeClass('contracted');
+          $(this).removeClass('expanded');
+          $(this).addClass('normal');
+        })
+      }
+    })
+  })
+</script>

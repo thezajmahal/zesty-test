@@ -1,0 +1,55 @@
+<div id="contact-wrapper">
+  <div class="col-md-3 sidebar-clickaway hidden-sm-down"></div>
+  <div class="col-md-6">
+    <div class="row col-xs-12 text-xs-right">
+      <i id="contact-exit" role="button" class="fa fa-times fa-2x m-t-1"></i>
+    </div>
+    <div class="row">
+      <h1>CONTACT</h1>
+    </div>
+    <div class="row text-xs-center">
+      Zesty Productions<br />
+      Zaji Zabalerio & Grayson Kohs, partners<br />
+      Please send all documentation to <a href="contact@zestyprods.com">contact@zestyprods.com</a>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <!-- TODO: Make fields required -->
+        <form id="contact-form">
+          <fieldset class="form-group">
+            <label for="contact-name">Name</label>
+            <input type="text" class="form-control" id="contact-name" name="name" required/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="contact-email">Email</label>
+            <input type="email" class="form-control" id="contact-email" name="email" required/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text" class="form-control" id="contact-subject" name="subject" required/>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea class="form-control" id="contact-message" rows="3" name="body" required></textarea>
+          </fieldset>
+          <button id="contact-submit" type="submit" class="btn btn-primary text-xs-center">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 sidebar-clickaway text-xs-right hidden-sm-down"></div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#contact-form').submit(function (event) {
+      event.preventDefault();
+      var data = $('form').serialize();
+      $('#contact-submit').html('Send <i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>');
+      $.post('/contact', data, function (res) {
+        $('#contact-submit').html('Sent').removeClass('btn-primary').addClass('btn-success').attr('disabled', 'true');
+        console.log(res);
+      });
+    });
+  });
+</script>
